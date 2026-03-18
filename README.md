@@ -102,13 +102,6 @@ deepfake-detection/
 
 ---
 
-## Installation
-
-```bash
-git clone https://github.com/your-username/deepfake-detection.git
-cd deepfake-detection
-pip install -r requirements.txt
-```
 
 **requirements.txt**
 
@@ -123,52 +116,6 @@ pytorch-grad-cam>=1.4.8
 kagglehub
 matplotlib
 scikit-learn
-```
-
----
-
-## Usage
-
-### Step 1 — Download dataset
-
-```python
-import kagglehub
-path = kagglehub.dataset_download("xdxd003/ff-c23")
-```
-
-### Step 2 — Extract face crops
-
-```python
-from src.extract_faces import process_videos
-
-BASE = "/kaggle/input/ff-c23/FaceForensics++_C23"
-
-process_videos(f"{BASE}/original",   output_dir="data/face_crops/train/real", label="real")
-process_videos(f"{BASE}/Deepfakes",  output_dir="data/face_crops/train/fake", label="fake")
-```
-
-### Step 3 — Train
-
-```python
-from src.train import train
-
-train(
-    data_dir   = "data/face_crops/",
-    epochs     = 30,
-    batch_size = 32,
-    lr         = 1e-4
-)
-```
-
-### Step 4 — Evaluate
-
-```python
-from src.evaluate import evaluate
-
-evaluate(
-    model_path = "checkpoints/best_model.pth",
-    data_dir   = "data/face_crops/val/"
-)
 ```
 
 ---
